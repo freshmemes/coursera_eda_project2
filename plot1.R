@@ -16,15 +16,15 @@ head(df)
 # sum emissions grouped by year
 dfy <- aggregate(Emissions ~ year, data = df, FUN = sum)
 
-# initialize png device, 4:3 aspect ratio
+# initialize png device
 png(filename = "plot1.png", width = 1200, height = 800)
 
 # set margins
 par(mar = c(6, 6, 4, 2))
 
 # simple barplot with labels
-barplot(dfy$Emissions/(10^6), names.arg = dfy$year, xlab = "Year", ylab = "PM.25 Emissions (million tons)", ylim = c(0, 8),
-        main = "Total PM.25 emissions have decreased each recorded year")
+barplot(dfy$Emissions/(10^6), names.arg = dfy$year, xlab = "Year", ylab = expression("PM"[2.5]*" Emissions (million tons)"), ylim = c(0, 8),
+        main = expression("Total PM"[2.5]*" emissions have decreased each recorded year"))
 
 # specify y-axis ticks
 axis(side = 2, at = seq(1, 8, by = 1))

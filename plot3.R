@@ -25,7 +25,7 @@ df3 %>%
   labs(title = "3 of 4 source types saw decreased emissions from 1999 to 2008",
        subtitle = "The exception was point sources, which ended 2008 with slightly higher emissions than in 1999",
        x = "Year",
-       y = "Emissions (tons)",
+       y = expression("PM"[2.5]*" Emissions (tons)"),
        caption = "Data from the National Emissions Inventory",
        linetype = "Type",
        color = "Type") +

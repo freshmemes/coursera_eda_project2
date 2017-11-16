@@ -14,15 +14,15 @@ df2 <- subset(df, fips == "24510")
 # sum emissions grouped by year
 dfy <- aggregate(Emissions ~ year, data = df2, FUN = sum)
 
-# initialize png device, 4:3 aspect ratio
+# initialize png device
 png(filename = "plot2.png", width = 1200, height = 800)
 
 # set margins
 par(mar = c(6, 6, 4, 2))
 
 # simple barplot with labels
-barplot(dfy$Emissions/(10^3), names.arg = dfy$year, xlab = "Year", ylab = "PM.25 Emissions (thousand tons)", ylim = c(0, 4),
-        main = "Total PM.25 emissions have decreased over time in Baltimore, MD")
+barplot(dfy$Emissions/(10^3), names.arg = dfy$year, xlab = "Year", ylab = expression("PM"[2.5]*" Emissions (thousand tons)"), ylim = c(0, 4),
+        main = expression("Total PM"[2.5]*" emissions have decreased over time in Baltimore, MD"))
 
 # add subtitle
 mtext("Although the decrease has been non-monotonic, emissions are lower in 2008 than in 1999")
