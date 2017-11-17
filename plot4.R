@@ -1,4 +1,3 @@
-# This is going to be very similar to plot1, with the data filtered to Baltimore.
 # skipping download/unzip steps (assuming already ran plot1.R which did this)
 # please set working directory to this file's location
 
