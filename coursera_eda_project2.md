@@ -1,11 +1,7 @@
----
-title: "coursera_eda_project2"
-output: 
-  html_document:
-    keep_md: true
----
+# coursera_eda_project2
 
-```{r, message=FALSE, warning=FALSE}
+
+```r
 library(tidyverse)
 ```
 
@@ -17,7 +13,8 @@ Have total emissions from PM~2.5~ decreased in the United States from 1999 to 20
 
 ### Answer
 
-```{r, message=FALSE, warning=FALSE}
+
+```r
 # please set working directory to this file's location
 
 # download and unzip data
@@ -26,7 +23,13 @@ unzip("rawdata.zip")
 
 # delete the zip to clean up space
 file.remove("rawdata.zip")
+```
 
+```
+## [1] TRUE
+```
+
+```r
 # read in the data
 df <- readRDS("summarySCC_PM25.rds")
 
@@ -44,6 +47,8 @@ axis(side = 2, at = seq(1, 8, by = 1))
 mtext("Emissions in 2008 were less than half of 1999's amount")
 ```
 
+![](coursera_eda_project2_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+
 ## Plot 2
 
 ### Question
@@ -52,7 +57,8 @@ Have total emissions from PM~2.5~ decreased in the **Baltimore City, Maryland** 
 
 ### Answer
 
-```{r}
+
+```r
 # filter to Baltimore
 df2 <- subset(df, fips == "24510")
 
@@ -67,6 +73,8 @@ barplot(dfy$Emissions/(10^3), names.arg = dfy$year, xlab = "Year", ylab = expres
 mtext("Although the decrease has been non-monotonic, emissions are lower in 2008 than in 1999")
 ```
 
+![](coursera_eda_project2_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+
 
 ## Plot 3
 
@@ -76,7 +84,8 @@ Of the four types of sources indicated by the <span style="color:red">**type**</
 
 ### Answer
 
-```{r, warning=FALSE}
+
+```r
 # filter to Baltimore, convert to tibble for funsies
 df2 <- as.tibble(subset(df, fips == "24510"))
 
@@ -102,6 +111,8 @@ df3 %>%
                      minor_breaks = seq(1999, 2008, by = 1))
 ```
 
+![](coursera_eda_project2_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+
 
 ## Plot 4
 
@@ -111,7 +122,8 @@ Across the United States, how have emissions from coal combustion-related source
 
 ### Answer
 
-```{r}
+
+```r
 scc <- readRDS("Source_Classification_Code.rds")
 
 # merge df and scc, convert to tibble
@@ -138,6 +150,8 @@ df4 %>%
   scale_x_continuous(breaks = seq(1999, 2008, by = 3))
 ```
 
+![](coursera_eda_project2_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
 
 ## Plot 5
 
@@ -147,7 +161,8 @@ How have emissions from motor vehicle sources changed from 1999-2008 in **Baltim
 
 ### Answer
 
-```{r}
+
+```r
 # filter to motor vehicles in Baltimore
 df3 <- df2 %>% 
   filter(grepl("vehicle", Short.Name, ignore.case = T)) %>% 
@@ -170,6 +185,8 @@ df4 %>%
   scale_x_continuous(breaks = seq(1999, 2008, by = 3))
 ```
 
+![](coursera_eda_project2_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+
 
 ## Plot 6
 
@@ -179,7 +196,8 @@ Compare emissions from motor vehicle sources in Baltimore City with emissions fr
 
 ### Answer
 
-```{r}
+
+```r
 # filter to motor vehicles in LA
 df3_la <- df2 %>% 
   filter(grepl("vehicle", Short.Name, ignore.case = T)) %>% 
@@ -215,3 +233,5 @@ df6 %>%
        caption = "Data from the National Emissions Inventory") +
   scale_x_continuous(breaks = seq(1999, 2008, by = 3))
 ```
+
+![](coursera_eda_project2_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
